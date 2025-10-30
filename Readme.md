@@ -17,7 +17,7 @@ Das hier ist unser Repository, um unsere FLL Projekte zu sichern und Backups her
 ## Installation
 
 ### Abhängigkeiten und Dinge, die installiert werden müssen:
-- [git]([https://git-scm.com/install)
+- [git](https://git-scm.com/install)
 - [Visual Studio Code](https://code.visualstudio.com/docs/?dv=win64user)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Dev Container Erweiterung für Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
@@ -57,4 +57,5 @@ Findet man auch online
 - ...commit
 
 - ...pull
+
 
