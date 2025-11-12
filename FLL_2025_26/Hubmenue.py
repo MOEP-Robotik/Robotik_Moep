@@ -10,5 +10,5 @@ elif selected == "2":
     import Programm2
 elif selected == "3":
     import Programm3
-elif selected == "test":
+elif selected == "T":
     import test
