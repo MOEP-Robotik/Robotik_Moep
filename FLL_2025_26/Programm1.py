@@ -14,8 +14,21 @@ TOPRIGHT = Motor(Port.A)
 TOPLEFT = Motor(Port.E)
 
 BEWEGUNGSMOTOREN.settings(straight_speed=800)
-TOPLEFT.run_angle(1000, 550, wait=False)
+
+TOPLEFT.run_angle(1000, 300, wait=False)
 BEWEGUNGSMOTOREN.straight(700)
-TOPLEFT.run_angle(1000, -550)
-BEWEGUNGSMOTOREN.turn(-45)
+BEWEGUNGSMOTOREN.settings(straight_speed=900)
+BEWEGUNGSMOTOREN.straight(-200)
+BEWEGUNGSMOTOREN.settings(straight_speed=800)
+TOPLEFT.run_angle(1000, -320)
 BEWEGUNGSMOTOREN.straight(200)
+
+BEWEGUNGSMOTOREN.turn(-45)
+BEWEGUNGSMOTOREN.straight(170)
+TOPRIGHT.run_angle(1000, -90)
+
+BEWEGUNGSMOTOREN.straight(-170)
+BEWEGUNGSMOTOREN.turn(45)
+BEWEGUNGSMOTOREN.straight(-800)
+
+TOPRIGHT.run_angle(1000, 90)
