@@ -8,12 +8,8 @@ HUB = PrimeHub()
 
 HUB.imu.reset_heading(0)
 
-TOPLEFT = Motor(Port.A)
-TOPRIGHT = Motor(Port.E)
-def PlatteBewegen(direction):
-    TOPLEFT.run_angle(1000, direction * 475, wait=False)
-    TOPRIGHT.run_angle(1000, direction * -475)
-    
-PlatteBewegen(1)
-wait(1000)
-PlatteBewegen(-1)
+TOPLEFT = Motor(Port.E)
+TOPRIGHT = Motor(Port.A)
+
+TOPRIGHT.run_angle(10000, -100)
+TOPRIGHT.run_angle(10000, 100)
