@@ -1,7 +1,7 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.robotics import DriveBase
-from pybricks.parameters import Port, Direction, Axis, Color
+from pybricks.parameters import Port, Direction
 from pybricks.tools import wait
 
 HUB = PrimeHub()
