@@ -11,5 +11,6 @@ HUB.imu.reset_heading(0)
 TOPLEFT = Motor(Port.E)
 TOPRIGHT = Motor(Port.A)
 
-TOPRIGHT.run_angle(10000, -100)
-TOPRIGHT.run_angle(10000, 100)
+while True:
+    TOPLEFT.run_angle(1200, -100)
+    TOPLEFT.run_angle(1200, 100)
