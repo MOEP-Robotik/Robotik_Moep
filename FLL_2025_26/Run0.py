@@ -21,7 +21,7 @@ BEWEGUNGSMOTOREN.settings(straight_speed=900)
 BEWEGUNGSMOTOREN.straight(-200)
 BEWEGUNGSMOTOREN.settings(straight_speed=800)
 TOPLEFT.run_angle(1000, -320)
-BEWEGUNGSMOTOREN.straight(210)
+BEWEGUNGSMOTOREN.straight(205)
 
 BEWEGUNGSMOTOREN.turn(-45)
 BEWEGUNGSMOTOREN.straight(170)
@@ -29,7 +29,7 @@ TOPRIGHT.run_angle(1000, -90)
 
 BEWEGUNGSMOTOREN.straight(-170)
 BEWEGUNGSMOTOREN.turn(45)
-TOPLEFT.run_angle(1000,200, wait=True)
+TOPLEFT.run_angle(1000,160, wait=True)
 BEWEGUNGSMOTOREN.straight(-800)
 
 TOPRIGHT.run_angle(1000, 90)
