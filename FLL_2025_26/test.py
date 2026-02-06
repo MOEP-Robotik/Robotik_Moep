@@ -1,7 +1,7 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.robotics import DriveBase
-from pybricks.parameters import Port, Direction, Axis, Color
+from pybricks.parameters import Port, Direction, Axis, Color, Button
 from pybricks.tools import wait
 
 HUB = PrimeHub()
@@ -12,5 +12,9 @@ TOPLEFT = Motor(Port.E)
 TOPRIGHT = Motor(Port.A)
 
 while True:
-    TOPLEFT.run_angle(1200, -100)
-    TOPLEFT.run_angle(1200, 100)
+    if Button.LEFT in HUB.buttons.pressed():
+        TOPLEFT.run(1000)
+    elif Button.RIGHT in HUB.buttons.pressed():
+        TOPLEFT.run(-1000)
+    else:
+        TOPLEFT.stop()
