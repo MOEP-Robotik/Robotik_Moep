@@ -13,11 +13,14 @@ TOPRIGHT = Motor(Port.A)
 TOPLEFT = Motor(Port.E)
 
 BEWEGUNGSMOTOREN.settings(straight_speed=800)
-TOPRIGHT.run_angle(-1000, 100)
+TOPRIGHT.run_angle(-500, 100, wait=False)
+wait(100)
 BEWEGUNGSMOTOREN.straight(420)
 
-for i in range(4):
-    TOPRIGHT.run_angle(1000, 80)
+for i in range(5):
+    TOPRIGHT.run_angle(1000, 82)
     TOPRIGHT.stop()
     wait(200)
-    TOPRIGHT.run_angle(-1000, 80)
+    TOPRIGHT.run_angle(-1000, 82)
+
+BEWEGUNGSMOTOREN.straight(-420)
