@@ -38,5 +38,4 @@ DB.arc(-400,45)
 #DB.turn(-45)
 DB.straight(600)
 DB.turn(-45)
-DB.straight(1000)
-
+DB.straight(500)

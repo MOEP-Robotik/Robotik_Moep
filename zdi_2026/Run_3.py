@@ -19,7 +19,7 @@ DB.settings(turn_rate=900)
 VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
-HINTEN.run_angle(1000, -6000,wait=False)
+HINTEN.run_angle(1000, -5800,wait=False)
 DB.straight(-590)
 DB.turn(-15)
 wait(4000)
