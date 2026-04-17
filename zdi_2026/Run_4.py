@@ -11,31 +11,29 @@ DB = DriveBase(
     Motor(Port.E, Direction.COUNTERCLOCKWISE),
     Motor(Port.A),
     62.4,  # Raddurchmesser
-    104 # Spurweite
+    100 # Spurweite
 )
 DB.use_gyro(True)
-DB.settings(straight_speed=700)
+DB.settings(straight_speed=650)
+DB.settings(straight_acceleration=400)
 DB.settings(turn_rate=900)
 VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
-DB.straight(400)
-DB.arc(150,90)
-DB.straight(340)
-DB.arc(-150,90)
-wait(500)
-DB.straight(317)
-wait(100)
-DB.turn(1)
-DB.turn(-1)
-DB.settings(straight_speed=999)
-DB.straight(-75)
-DB.turn(-95)
-DB.settings(straight_speed=700)
-DB.straight(-100)
-HINTEN.run_angle(900, -550)
-DB.arc(-400,45)
-#DB.turn(-45)
+HUB.imu.reset_heading(0)
+
+DB.turn(9)
+DB.straight(-1010)
+DB.arc(160, 190)
+DB.straight(150)
+for i in range(1,4):
+    VORNE.run_angle(-1000, 370)
+    DB.straight(-45) #Länge des Steins?? + Toleranz???
+    VORNE.run_angle(1000, 370)
+    DB.straight(-90)
+VORNE.run_angle(-1000, 370)
+DB.straight(-150)
+DB.turn(-80)
+DB.straight(-550)
+DB.turn(-90)
 DB.straight(600)
-DB.turn(-45)
-DB.straight(500)
