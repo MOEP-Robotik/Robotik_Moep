@@ -1,7 +1,7 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.robotics import DriveBase
-from pybricks.parameters import Port, Direction, Axis
+from pybricks.parameters import Port, Direction, Axis, Stop
 from pybricks.tools import wait, StopWatch
 
 HUB = PrimeHub()
@@ -20,16 +20,22 @@ VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
 DB.straight(200)
-DB.arc(-300, 180)
-#DB.straight(400)
-DB.arc(100, 90)
-#DB.straight(300)
-#DB.arc(200,90)
-DB.straight(180)
-DB.turn(1)
-DB.turn(-1)
-DB.straight(-100)
-DB.turn(90)
-DB.straight(400)
+DB.arc(-350, 180)
+DB.straight(135)
+DB.arc(70, 90)
+DB.straight(67)
+VORNE.run_angle(-1000, 430, wait=True)
+wait(1000)
+DB.settings(straight_speed=1000, straight_acceleration=10000)
+DB.straight(10, then=Stop.HOLD)
+DB.settings(straight_speed=1000)
+DB.straight(-50)
+DB.settings(straight_speed=100)
+DB.straight(-30)
+VORNE.run_angle(1000, 700, wait=True)
+DB.settings(straight_speed=900, straight_acceleration=500)
+VORNE.run_angle(1000, 300, wait=False)
 DB.turn(-90)
-DB.straight(600)
+DB.straight(-380)
+DB.turn(-90)
+DB.straight(-600)
