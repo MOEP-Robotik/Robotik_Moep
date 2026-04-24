@@ -19,17 +19,17 @@ DB.settings(turn_rate=900)
 VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
-HINTEN.run_angle(800, 50)
+#HINTEN.run_angle(800, 50)
 DB.arc(500, 90)
-DB.arc(-220, 90)
-DB.turn(-1 * HUB.imu.heading()) #maybe???
-DB.straight(320)
-DB.settings(straight_speed=900)
-DB.straight(-60)
-DB.settings(straight_speed=700)
-DB.turn(-1 * HUB.imu.heading()) #maybe???
+DB.arc(-165, 90)
+#DB.turn(-1 * HUB.imu.heading()) #maybe???
+DB.straight(315)
+DB.settings(straight_speed=900, straight_acceleration=10000)
+DB.straight(-50)
+DB.settings(straight_speed=700, straight_acceleration=800)
+#DB.turn(-1 * HUB.imu.heading()) #maybe???
 DB.turn(-90)
-DB.straight(-150)
+DB.straight(-130)
 HINTEN.run_angle(-900, 500)
 DB.straight(200)
 DB.arc(-560, 90)
