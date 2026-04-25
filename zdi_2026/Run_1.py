@@ -34,7 +34,7 @@ DB.straight(190)
 DB.arc(-280, 60)
 DB.settings(turn_rate=300)
 DB.turn(-75)
-DB.straight(650)
+DB.straight(700)
 DB.turn(-30)
 DB.straight(500)
 """
