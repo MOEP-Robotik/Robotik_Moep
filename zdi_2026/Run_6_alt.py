@@ -31,7 +31,7 @@ DB.straight(-200)
 DB.turn(80)
 DB.straight(530)
 DB.turn(-80)
-DB.straight(360) #Diese Fahrt maybe etwas verlängern
+DB.straight(350) #Diese Fahrt maybe etwas verlängern
 DB.turn(90)
 DB.turn(HUB.imu.heading()-308)
 DB.straight(-100)
