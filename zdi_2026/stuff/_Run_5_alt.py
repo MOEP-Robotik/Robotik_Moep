@@ -19,32 +19,19 @@ DB.settings(turn_rate=600)
 VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
-DB.turn(5)
-DB.arc(-300, 90)
-DB.straight(202)
-DB.arc(200, 64)
-DB.straight(470)
-DB.settings(straight_speed=500, straight_acceleration=200)
-DB.straight(-35)
-
-wait(500)
-
-DB.stop()
-HUB.imu.reset_heading(0)
-
-for i in range(1,4):
-    VORNE.run_angle(-1000, 370)
-    DB.straight(-37) #Länge der Steins?? + Toleranz??
-    VORNE.run_angle(1000, 360)
-    DB.straight(-90 + (-1 * i))
-
-VORNE.run_angle(-1000, 370)
-DB.straight(-100)
-
+#HINTEN.run_angle(800, 50)
+DB.arc(430, 90)
+DB.arc(-190, 90)
+#DB.turn(-1 * HUB.imu.heading()) #maybe???
+DB.straight(340)
+DB.settings(straight_speed=900, straight_acceleration=10000)
+DB.straight(-55)
 DB.settings(straight_speed=700, straight_acceleration=500)
-
-DB.turn(108)
-
-DB.straight(550)
-DB.turn(90)
-DB.straight(300)
+#DB.turn(-1 * HUB.imu.heading()) #maybe???
+DB.turn(-90)
+DB.straight(-100)
+HINTEN.run_angle(-900, 500)
+DB.settings(straight_speed=700)
+DB.straight(200)
+DB.arc(-540, 90)
+DB.straight(600)

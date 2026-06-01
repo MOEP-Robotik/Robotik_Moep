@@ -19,6 +19,6 @@ elif selected == "6":
 elif selected == "7":
     import Run_7
 elif selected == "8":
-    import Run_6_alt
+    import Run_8
 elif selected == "T":
     import motortest
