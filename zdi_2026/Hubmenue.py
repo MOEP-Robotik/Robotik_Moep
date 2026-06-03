@@ -20,5 +20,7 @@ elif selected == "7":
     import Run_7
 elif selected == "8":
     import Run_8
+elif selected == "9":
+    import Run_9
 elif selected == "T":
     import motortest
