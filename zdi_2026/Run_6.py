@@ -1,7 +1,7 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.robotics import DriveBase
-from pybricks.parameters import Port, Direction, Axis
+from pybricks.parameters import Port, Direction, Axis, Stop
 from pybricks.tools import wait, StopWatch
 
 HUB = PrimeHub()
@@ -9,42 +9,29 @@ HUB.imu.reset_heading(0)
 
 DB = DriveBase(
     Motor(Port.E, Direction.COUNTERCLOCKWISE),
-    Motor(Port.A), 
+    Motor(Port.A),
     62.4,  # Raddurchmesser
-    104 # Spurweite
+    100 # Spurweite
 )
 DB.use_gyro(True)
-DB.settings(straight_speed=700, straight_acceleration=500)
-DB.settings(turn_rate=600)
+DB.settings(straight_speed=500)
+DB.settings(turn_rate=300)
 VORNE = Motor(port=Port.C)
 HINTEN = Motor(port=Port.D)
 
-DB.turn(5)
-DB.arc(-300, 90)
-DB.straight(202)
-DB.arc(200, 64)
-DB.straight(470)
-DB.settings(straight_speed=500, straight_acceleration=200)
-DB.straight(-35)
-
-wait(500)
-
-DB.stop()
 HUB.imu.reset_heading(0)
 
-for i in range(1,4):
-    VORNE.run_angle(-1000, 370)
-    DB.straight(-37) #Länge der Steins?? + Toleranz??
-    VORNE.run_angle(1000, 360)
-    DB.straight(-90 + (-1 * i))
-
-VORNE.run_angle(-1000, 370)
-DB.straight(-100)
-
-DB.settings(straight_speed=700, straight_acceleration=500)
-
-DB.turn(108)
-
-DB.straight(550)
-DB.turn(90)
-DB.straight(300)
+DB.turn(-52, then=Stop.HOLD)
+DB.arc(370, 90)
+DB.arc(320, 90)
+DB.straight(90)
+DB.arc(100, 90)
+DB.straight(50)
+DB.straight(-200)
+DB.settings(straight_speed=900, straight_acceleration=800)
+DB.turn(80)
+DB.straight(510)
+DB.turn(-80)
+DB.straight(490) #Diese Fahrt maybe etwas verlängern
+DB.turn(-85)
+DB.straight(500)
