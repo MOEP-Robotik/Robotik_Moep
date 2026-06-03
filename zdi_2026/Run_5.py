@@ -21,13 +21,13 @@ HINTEN = Motor(port=Port.D)
 
 HINTEN.run_angle(800, -2300,wait=False)
 DB.straight(-590)
-DB.turn(-19)
+DB.turn(-10)
 
 while(not HINTEN.done()):
     wait(10)
 
 DB.straight(100)
-DB.turn(28)
+DB.turn(18)
 DB.straight(900)
 DB.straight(-200)
 
