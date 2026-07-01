@@ -6,7 +6,7 @@ from pybricks.tools import wait, StopWatch
 
 class BOT():
     def __init__(self):
-        motor_left = Motor(Port.E, Direction.COUNTERCLOCKWISE)
+        motor_left = Motor(Port.C, Direction.COUNTERCLOCKWISE)
         motor_right = Motor(Port.D)
         DB = DriveBase(
             motor_left, 

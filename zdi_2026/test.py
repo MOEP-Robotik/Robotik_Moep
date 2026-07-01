@@ -8,12 +8,12 @@ HUB = PrimeHub()
 HUB.imu.reset_heading(0)
 
 DB = DriveBase(
-    Motor(Port.D, Direction.COUNTERCLOCKWISE),
-    Motor(Port.C),
-    55,  # Raddurchmesser
-    80  # Spurweite
+    Motor(Port.C, Direction.COUNTERCLOCKWISE),
+    Motor(Port.D),
+    62.4,  # Raddurchmesser
+    104  # Spurweite
 )
-DB.use_gyro(True)
+DB.use_gyro(False)
 DB.settings(straight_speed=800)
 DB.settings(turn_rate=500)
 
@@ -44,4 +44,4 @@ def gyrostraight(DriveBase: DriveBase, distance: int, verstaerkung: int = 1.5):
     else:
         print("Error")
 
-gyrostraight(DB, 3000, 3)
+DB.straight(10000)
