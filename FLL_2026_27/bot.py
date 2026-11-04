@@ -27,7 +27,9 @@ class BOT:
         self.settings = setting_param
         self.motors = {
             "left": Motor(Port.C, Direction.COUNTERCLOCKWISE),
-            "right": Motor(Port.D)
+            "right": Motor(Port.D),
+            "front": Motor(Port.F),
+            "back": Motor(Port.E)
         }
         self.DB = DriveBase(
             self.motors["left"],
