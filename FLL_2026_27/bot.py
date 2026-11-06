@@ -2,13 +2,13 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.robotics import DriveBase
 from pybricks.parameters import Port, Direction
-#from pybricks.tools import wait, StopWatch
+from pybricks.tools import wait, StopWatch
 
-class BOT:
-    __DB: DriveBase
-    kp: int = 0
-    kd: int = 0
-    ki: int = 0
+class Bot:
+    DB: DriveBase
+    kp: int = 2
+    kd: int = 40
+    ki: int = 0.5
     lasterror = 0
     integral = 0
     motors: dict[str, Motor]
@@ -17,14 +17,12 @@ class BOT:
         "right": ColorSensor
     }
     HUB: PrimeHub
-    settings: list[int]
 
 
     def __init__(self, setting_param = [800, 300, 800, 300], gyro_use = False):
         self.HUB = PrimeHub()
         self.HUB.imu.reset_heading(0)
 
-        self.settings = setting_param
         self.motors = {
             "left": Motor(Port.C, Direction.COUNTERCLOCKWISE),
             "right": Motor(Port.D),
@@ -38,10 +36,10 @@ class BOT:
             97
         )
         self.DB.use_gyro(gyro_use)
-        self.DB.settings(straight_speed=self.settings[0],
-                    straight_acceleration=self.settings[1],
-                    turn_rate=self.settings[2],
-                    turn_acceleration=self.settings[3])
+        self.DB.settings(straight_speed=setting_param[0],
+                    straight_acceleration=setting_param[1],
+                    turn_rate=setting_param[2],
+                    turn_acceleration=setting_param[3])
         self.color_sensors = {
             "left": ColorSensor(port=Port.A),
             "right": ColorSensor(port=Port.B)
@@ -70,16 +68,28 @@ class BOT:
         i = integral * ki
         return {"lenkungswert": p+d+i, "lasterror": lasterror, "integral": integral}
 
-    def gyrostraight(self, umdrehungen: int):
-        self.DB.reset(0)
-        werte = {"lenkungswert": 0, "lasterror": 0, "integral": 0}
-        while self.DB.angle() < umdrehungen:
-            werte = self.__pid(self.HUB.imu.heading(), 0, 
-                               self.kp, self.kd, self.ki, werte["lasterror"], werte["integral"])
-            self.DB.drive(self.settings[0], werte["lenkungswert"])
+    def gyrostraight(self, distance: int):
+        if distance < 0:
+            self.DB.reset(0)
+            werte = {"lenkungswert": 0, "lasterror": 0, "integral": 0}
+            while self.DB.distance() > distance :
+                werte = self.__pid(self.HUB.imu.heading(), 0, 
+                                self.kp, self.kd, self.ki, werte["lasterror"], werte["integral"])
+                self.DB.drive(-self.DB.settings()[0], -werte["lenkungswert"])
+            self.DB.stop()
+        else:
+            self.DB.reset(0)
+            werte = {"lenkungswert": 0, "lasterror": 0, "integral": 0}
+            while self.DB.distance() < distance :
+                werte = self.__pid(self.HUB.imu.heading(), 0, 
+                                self.kp, self.kd, self.ki, werte["lasterror"], werte["integral"])
+                self.DB.drive(self.DB.settings()[0], werte["lenkungswert"])
+            self.DB.stop()
+
     def gyroturn(self, winkel :int, verstaerkung :float):
         self.DB.settings(turn_acceleration=1000)
         self.HUB.imu.reset_heading(0)
+        winkel = winkel - 2 if winkel > 0 else winkel + 2
         while abs(winkel-self.HUB.imu.heading())>2:
             speed = 100+abs(winkel-self.HUB.imu.heading())*verstaerkung
             self.DB.drive(0, winkel/abs(winkel)*speed)
@@ -87,9 +97,8 @@ class BOT:
         self.DB.settings(turn_acceleration=300)
         #steht gerade oben in der Intialisierung (muss ich noch bearbeiten)
         
-
-        
-            
-bot = BOT(gyro_use=False)
-#bot.gyrostraight(10)
-bot.gyroturn(90, 0.6)# Verstärkung bei keinen Anbauteilen, passt noch nicht
+if __name__ == "__main__":     
+    bot = Bot()
+    bot.gyroturn(90, 0.6)
+    wait(1000)
+    bot.gyroturn(-90, 0.6)
