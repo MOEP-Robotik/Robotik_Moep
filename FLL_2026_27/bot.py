@@ -94,7 +94,7 @@ class Bot:
             speed = 100+abs(winkel-self.HUB.imu.heading())*verstaerkung
             self.DB.drive(0, winkel/abs(winkel)*speed)
         self.DB.stop()
-        self.DB.settings(turn_acceleration=300)
+        self.HUB.imu.reset_heading(0)
         #steht gerade oben in der Intialisierung (muss ich noch bearbeiten)
         
 if __name__ == "__main__":     
