@@ -76,7 +76,7 @@ class Bot:
                 werte = self.__pid(self.HUB.imu.heading(), 0, 
                                 self.kp, self.kd, self.ki, werte["lasterror"], werte["integral"])
                 self.DB.drive(-self.DB.settings()[0], -werte["lenkungswert"])
-            self.DB.stop()
+            self.DB.hold()
         else:
             self.DB.reset(0)
             werte = {"lenkungswert": 0, "lasterror": 0, "integral": 0}
@@ -84,7 +84,7 @@ class Bot:
                 werte = self.__pid(self.HUB.imu.heading(), 0, 
                                 self.kp, self.kd, self.ki, werte["lasterror"], werte["integral"])
                 self.DB.drive(self.DB.settings()[0], werte["lenkungswert"])
-            self.DB.stop()
+            self.DB.hold()
 
     def gyroturn(self, winkel :int, verstaerkung :float):
         self.DB.settings(turn_acceleration=1000)
@@ -93,7 +93,7 @@ class Bot:
         while abs(winkel-self.HUB.imu.heading())>2:
             speed = 100+abs(winkel-self.HUB.imu.heading())*verstaerkung
             self.DB.drive(0, winkel/abs(winkel)*speed)
-        self.DB.stop()
+        self.DB.hold()
         self.HUB.imu.reset_heading(0)
         #steht gerade oben in der Intialisierung (muss ich noch bearbeiten)
         
